@@ -1,47 +1,61 @@
-Overview
-Below is an overall description of our tool.
+## Overview
 
-System Requirements:
-python=3.11.4
-
-
-Installation:
-# python 3.12.1 -m venv venv_name
-# source venv/bin/activate
-# pip install -r requirements.txt
+Below is an overall description of our tool. For details and citations about this work, please check:
 
 
 
-First run gseconverter.py
-This code takes the GSE id as input and downloads the soft file, gpl file. 
-Here you can either give the GSE id to the 
-# input_gseid = "GSE210222"
-If run successfully, It should create a tab separated .csv file of all the raw count values.
-Many times for RNA-Seq data the .soft file does not contain the matrix values for the experiment, then you need to download the matrix file separately.
+## System Requirements
 
+- Python 3.11.4
 
+## Installation
 
-Now run tpm_converter.py
-This code converts the counts matrix file to tpm normalised matrix.
+1. Create a virtual environment:
 
+   ```bash
+   python 3.12.1 -m venv venv_name
+   ```
 
-Now we should have a tab separated tpm and log2 normalised .csv matrix file with first column as gene name and rest columns as samples.
+2. Activate the virtual environment:
 
+   ```bash
+   source venv/bin/activate
+   ```
 
+3. Install required packages:
 
-Now we will run GSEA analysis on the normalised matrix file by running ssgsea.py
-we will input the matrix.csv file, and the genesets.gmt file for the gsea function.
-This code will also plot a scatter plot of all the samples with PCA values on the xaxis and yaxis.
+   ```bash
+   pip install -r requirements.txt
+   ```
 
+## Usage
 
-At last we will run main.py 
-This file generates all the plots showed in the paper. 
+### Step 1: Download Raw Count Values
 
+Run `gseconverter.py` by providing the GSE id as input:
 
+```python
+input_gseid = "GSE210222"
+```
 
+This code will download soft and gpl files and create a tab-separated .csv file with raw count values.
 
+### Step 2: Convert to TPM
 
+Execute `tpm_converter.py` to convert the counts matrix file to a TPM-normalized matrix.
 
+### Step 3: GSEA Analysis
 
+Run `ssgsea.py` by providing the matrix.csv file and genesets.gmt file for GSEA analysis. The code will generate a scatter plot of samples with PCA values.
 
+### Step 4: Generate Plots
 
+Finally, execute `main.py` to generate plots showcased in the paper.
+
+## Important Note
+
+For RNA-Seq data where the .soft file lacks matrix values, download the matrix file separately.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
